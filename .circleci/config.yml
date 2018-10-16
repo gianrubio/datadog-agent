@@ -121,6 +121,17 @@ jobs:
           command: inv -e lint-teamassignment
           name: run PR check for team assignment labels
 
+  milestone:
+    <<: *job_template
+    steps:
+      - restore_cache: *restore_source
+      - restore_cache: *restore_deps
+      - setup_remote_docker
+      - run: *enter_venv
+      - run:
+          command: inv -e lint-milestone
+          name: run PR check for milestone assignment
+
   filename_linting:
     <<: *job_template
     steps:
@@ -190,6 +201,9 @@ workflows:
           requires:
             - dependencies
       - team_label:
+          requires:
+            - dependencies
+      - milestone:
           requires:
             - dependencies
       - filename_linting:
