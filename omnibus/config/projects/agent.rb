@@ -123,7 +123,8 @@ dependency 'datadog-process-agent'
 # Additional software
 dependency 'jmxfetch'
 dependency 'datadog-pip'
-dependency 'protobuf-py'
+## Not needed anymore since we moved to UCS4
+##dependency 'protobuf-py'
 
 if osx?
   dependency 'datadog-agent-mac-app'
